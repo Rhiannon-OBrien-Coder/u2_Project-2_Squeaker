@@ -1,7 +1,7 @@
 # u2_Project-2_Squeaker
 
 ## Where to begin
-The plan for this project is to make a twitter knock off style application themed around mice instead of birds. When you post on Squeaker, it's called a "squeak"! When you follow another user, it's called "Joining their mischief".
+The plan for this project is to make a twitter knock off style application themed around mice instead of birds. When you post on Squeaker, it's called a "squeak"! When you follow another user, it's called "Joining their mischief". "Giving a post a like" is "Giving a squeak a cheese".
 
 Auto logged in is fine - dont look into jot and authorization stuff ~Jeremy.
 
@@ -11,9 +11,11 @@ Auto logged in is fine - dont look into jot and authorization stuff ~Jeremy.
 ## Wireframe
 
 ## User Stories
-☐ AAU I want to be able to make an account
+☐ AAU I want to be able to make a user with a blog
 
-☐ AAU I want to be able to look at all the posts I've made
+☐ AAU I want to be able to change my username or password
+
+☐ AAU I want to be able to look at all the posts I've made - on my blog
 
 ☐ AAU I want to be able to make a post to my blog
 
