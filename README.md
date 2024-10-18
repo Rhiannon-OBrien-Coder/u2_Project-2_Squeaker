@@ -6,6 +6,7 @@ The plan for this project is to make a twitter knock off style application theme
 Auto logged in is fine - dont look into jot and authorization stuff ~Jeremy.
 
 ## ERD
+![Squeaker ERD](https://github.com/user-attachments/assets/efa232e3-6403-4b94-b6a5-6b682e6b1374)
 
 ## Wireframe
 
