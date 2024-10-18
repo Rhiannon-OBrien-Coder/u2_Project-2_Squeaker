@@ -1,13 +1,13 @@
 # u2_Project-2_Squeaker
 
-##Where to begin
+## Where to begin
 
-##ERD
+## ERD
 
-##Wireframe
+## Wireframe
 
-##User Stories
+## User Stories
 
-##MVP
+## MVP
 
-##Stretch Goals
+## Stretch Goals
