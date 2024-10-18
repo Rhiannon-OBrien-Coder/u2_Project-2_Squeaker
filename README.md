@@ -9,6 +9,7 @@ Auto logged in is fine - dont look into jot and authorization stuff ~Jeremy.
 ![Squeaker ERD](https://github.com/user-attachments/assets/efa232e3-6403-4b94-b6a5-6b682e6b1374)
 
 ## Wireframe
+![wireframe for squeaker](https://github.com/user-attachments/assets/ad488eb1-ea36-413e-9b80-39fba82b466f)
 
 ## User Stories
 ☐ AAU I want to be able to make a user with a blog
