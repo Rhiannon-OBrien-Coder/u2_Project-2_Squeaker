@@ -1,8 +1,8 @@
-const User = require('../models');
+const { User } = require('../models');
 
 const getUsers = async (req, res) => {
     try {
-        const user = await User.find()
+        const user = await User.find({})
         res.json(user)
     } catch (error) {
         return res.status(500).send(error.message);
@@ -41,7 +41,7 @@ const createUser = async (req, res) => {
         const user = await new User(req.body)
         await user.save()
         return res.status(201).json({
-            user,
+            user
         });
     } catch (e) {
         return res.status(500).json({ error: e.message })

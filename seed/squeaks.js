@@ -17,12 +17,12 @@ const user3 = await User.find({ username: "User-3" })
     {
     image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdaoaEOrtpNuiNXU3fJ27ISfVYsAua33kr6w&s",
     content:  "Squad goals",
-    blog: user2[0]._id
+    user: user2[0]._id
     },
     {
     image: "https://lumiere-a.akamaihd.net/v1/images/p_disneymickeymouse_21494_cef43efe.jpeg?region=0%2C0%2C540%2C810",
     content:  "Can you believe this show? so inaccurate smh, us mice would never befriend ducks and dogs",
-    blog: user3[0]._id
+    user: user3[0]._id
     },
   ]
   await Squeak.insertMany(squeaks)

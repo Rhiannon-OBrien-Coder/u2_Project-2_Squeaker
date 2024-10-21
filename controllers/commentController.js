@@ -1,8 +1,8 @@
-const Comment = require('../models');
+const {Comment} = require('../models');
 
 const getComments = async (req, res) => {
     try {
-        const comment = await Comment.find()
+        const comment = await Comment.find({})
         res.json(comment)
     } catch (error) {
         return res.status(500).send(error.message);

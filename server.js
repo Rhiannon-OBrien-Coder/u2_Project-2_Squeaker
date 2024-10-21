@@ -1,6 +1,6 @@
-const express = require('express')
-const db = require('./db')
-const bodyParser = require('body-parser')
+const express = require('express');
+const db = require('./db');
+const bodyParser = require('body-parser');
 const logger = require('morgan')
 const userController = require('./controllers/userController')
 const mischiefController = require('./controllers/mischiefController')
@@ -11,9 +11,11 @@ const stinkycheeseController = require('./controllers/stinkycheeseController')
 
 const PORT = process.env.PORT || 3001
 
-const app = express()
+const app = express();
 app.use(logger('dev'))
 app.use(bodyParser.json())
+
+db.on('error', console.error.bind(console, 'MongoDB connection error:'))
 
 app.listen(PORT, () => console.log(`Listening on port: ${PORT}`))
 
@@ -37,25 +39,23 @@ app.post('/squeaks', squeakController.createSqueak)
 app.put('/squeaks/:id', squeakController.updateSqueak)
 app.delete('/squeaks/:id', squeakController.deleteSqueak)
 
-app.get('/comments/:id', commentController.getComments)
+app.get('/comments/', commentController.getComments)
 app.get('/comments/squeak/:squeak', commentController.getCommentBySqueak)
 app.get('/comments/:id', commentController.getCommentById)
 app.post('/comments', commentController.createComment)
 app.put('/comments/:id', commentController.updateComment)
 app.delete('/comments/:id', commentController.deleteComment)
 
-//cheeses
-app.get('/cheeses/:id', cheeseController.getInstructionById)
-app.get('/cheeses/recipe/:recipe', cheeseController.getInstructionByRecipe)
-app.post('/cheeses', cheeseController.createInstruction)
-app.put('/cheeses/:id', cheeseController.updateInstruction)
-app.delete('/cheeses/:id', cheeseController.deleteInstruction)
+app.get('/cheeses', cheeseController.getCheeses)
+app.get('/cheeses/squeak/:squeak', cheeseController.getCheesesBySqueak)
+app.post('/cheeses', cheeseController.newCheese)
+app.put('/cheeses/:id', cheeseController.updateCheese)
+app.delete('/cheeses/:id', cheeseController.deleteCheese)
 
-//stinkycheeses
-app.get('/stinkycheeses/:id', stinkycheeseController.getInstructionById)
-app.get('/stinkycheeses/recipe/:recipe', stinkycheeseController.getInstructionByRecipe)
-app.post('/stinkycheeses', stinkycheeseController.createInstruction)
-app.put('/stinkycheeses/:id', stinkycheeseController.updateInstruction)
-app.delete('/stinkycheeses/:id', stinkycheeseController.deleteInstruction)
+app.get('/stinkycheeses', stinkycheeseController.getStinkyCheeses)
+app.get('/stinkycheeses/squeak/:squeak', stinkycheeseController.getStinkyCheesesBySqueak)
+app.post('/stinkycheeses', stinkycheeseController.newStinkyCheese)
+app.put('/stinkycheeses/:id', stinkycheeseController.updateStinkyCheese)
+app.delete('/stinkycheeses/:id', stinkycheeseController.deleteStinkyCheese)
 
 app.get('/*', (req, res) => res.send({ error: "404 page not found" }))

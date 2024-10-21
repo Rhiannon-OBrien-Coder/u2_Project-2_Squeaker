@@ -1,8 +1,8 @@
-const Mischief = require('../models');
+const {Mischief} = require('../models');
 
 const getMischiefs = async (req, res) => {
     try {
-        const mischief = await Mischief.find()
+        const mischief = await Mischief.find({})
         res.json(mischief)
     } catch (error) {
         return res.status(500).send(error.message);

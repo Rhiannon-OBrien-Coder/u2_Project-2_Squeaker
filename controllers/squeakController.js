@@ -1,8 +1,8 @@
-const Squeak = require('../models');
+const {Squeak} = require('../models');
 
 const getUsers = async (req, res) => {
     try {
-        const squeak = await Squeak.find()
+        const squeak = await Squeak.find({})
         res.json(squeak)
     } catch (error) {
         return res.status(500).send(error.message);
