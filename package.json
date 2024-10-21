@@ -1,0 +1,21 @@
+{
+  "name": "u2_project-2_squeaker",
+  "version": "1.0.0",
+  "description": "## Where to begin The plan for this project is to make a twitter knock off style application themed around mice instead of birds. When you post on Squeaker, it's called a \"squeak\"! When you follow another user, it's called \"Joining their mischief\". \"Giving a post a like\" is \"Giving a squeak a cheese\".",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.1",
+    "mongoose": "^8.7.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.7"
+  }
+}
