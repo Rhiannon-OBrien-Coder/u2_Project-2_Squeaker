@@ -2,30 +2,41 @@ body {
     background-color: #e7c695;
 }
 
-#branding {
-    background-color: #dfa54f;
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
-h1 {
-    font-family: "Playwrite FR Moderne", cursive;
-    color: #0c0407;
+.leftHeader {
+    display: flex;
+    justify-content: flex-start;
 }
+    h1 {
+        font-family: "Playwrite FR Moderne", cursive;
+        color: #0c0407;
+        font-size: 15pt;
+    }
+    img {
+        max-width: 100px;
+    }
 
-img {
-    max-width: 125px;
+.rightHeader {
+    display: flex;
+    justify-content: flex-end;
 }
+    button {
+        font-family: "Playwrite FR Moderne", cursive;
+        font-weight: bold;
+        color: #0c0407;
+        height: 50px;
+        width: 75px;
+        border-radius: 5pt;
+        background-color: #b1742e;
+        justify-content: flex-end;
+    }
 
-#FAQ {
-    background-color: #dfa54f;
-}
 
-#sidebar {
-    background-color: #dfa54f;
-}
-
-#feed {
-    background-color: #dfa54f;
-}
 
 /* colors
 dk brown: #0c0407
