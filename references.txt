@@ -1,0 +1,4 @@
+Primarily I referenced previous assignments and classes to build up the backend stuff.
+I am tackling front end with grid, referencing the following:
+    https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_grid_layout
+    https://css-tricks.com/snippets/css/complete-guide-grid/#aa-introduction-to-css-grid
