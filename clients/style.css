@@ -1,5 +1,7 @@
 body {
     background-color: #e7c695;
+    margin-left: 100px;
+    margin-right: 100px;
 }
 
 header {
@@ -7,35 +9,122 @@ header {
     align-items: center;
     justify-content: space-between;
 }
-
-.leftHeader {
-    display: flex;
-    justify-content: flex-start;
-}
-    h1 {
-        font-family: "Playwrite FR Moderne", cursive;
-        color: #0c0407;
-        font-size: 15pt;
+    .leftHeader {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
     }
-    img {
-        max-width: 100px;
-    }
-
-.rightHeader {
-    display: flex;
-    justify-content: flex-end;
-}
-    button {
-        font-family: "Playwrite FR Moderne", cursive;
-        font-weight: bold;
-        color: #0c0407;
-        height: 50px;
-        width: 75px;
-        border-radius: 5pt;
-        background-color: #b1742e;
+        h1 {
+            font-family: "Playwrite FR Moderne", cursive;
+            color: #0c0407;
+            font-size: 15pt;
+        }
+        img {
+            max-width: 100px;
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+    .rightHeader {
+        display: flex;
         justify-content: flex-end;
     }
+        #FAQ {
+            font-family: "Comfortaa", sans-serif;
+            font-size: 15pt;
+            font-weight: 400;
+            color: #0c0407;
+            height: 50px;
+            width: 75px;
+            border-radius: 5pt;
+            background-color: #b1742e;
+            justify-content: flex-end;
+        }
 
+main {
+    display: flex;
+    align-content: flex-start;
+    justify-content: space-between;
+    margin-top: 20px;
+    font-family: "Comfortaa", sans-serif;
+    color: #0c0407;
+}
+    .sidebar {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 250px;
+        background-color: #dfa54f;
+        margin-right: 20px;
+    }
+        h2 {
+            font-size: 15pt;
+            font-weight: 400;
+            color: #0c0407;
+            margin: 30px;
+        }
+        p {
+            color: #0c0407;
+        }
+        #logout {
+            font-family: "Comfortaa", sans-serif;
+            font-size: 12pt;
+            font-weight: 400;
+            color: #0c0407;
+            height: 40px;
+            width: 100px;
+            border-radius: 5pt;
+            background-color: #b1742e;
+            margin: 40px;
+        }
+    .feed {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 750px;
+        background-color: #dfa54f;
+        margin-left: 20px;
+        font-family: "Comfortaa", sans-serif;
+        font-size: 12pt;
+        color: #0c0407;
+    }
+        .squeak {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 575px;
+            background-color: #b1742e;
+            padding: 20px;
+            border-radius: 5pt;
+        }
+            #addimage {
+                font-family: "Comfortaa", sans-serif;
+                width: 550px;
+                border-radius: 5pt;
+                background-color: #e7c695;
+                color: #0c0407;
+                resize: none;
+                margin-bottom: 20px;
+            }
+            #content {
+                font-family: "Comfortaa", sans-serif;
+                width: 550px;
+                height: 100px;
+                border-radius: 5pt;
+                background-color: #e7c695;
+                color: #0c0407;
+                resize: none;
+            }
+            #sendBtn {
+                font-family: "Comfortaa", sans-serif;
+                font-size: 11pt;
+                font-weight: 400;
+                color: #e7c695;
+                height: 30px;
+                width: 75px;
+                border-radius: 5pt;
+                background-color: #4d0000;
+                margin-top: 15px;
+            }
 
 
 /* colors

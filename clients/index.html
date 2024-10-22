@@ -4,6 +4,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playwrite+FR+Moderne:wght@100..400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&family=Playwrite+FR+Moderne:wght@100..400&display=swap" rel="stylesheet">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="style.css">
@@ -18,13 +19,36 @@
             <h1>Squeaker</h1>
         </div>
         <div class="rightHeader">
-            <button>FAQ</button>
+            <button id="FAQ">FAQ</button>
         </div>
     </header>
     <main>
-        <div id="sidebar"></div>
-        <div id="feed"></div>
+        <div class="sidebar">
+            <div id="userImage"></div>
+            <h2>Welcome User!</h2>
+            <p id="sb1">Blog</p>
+            <p id="sb2">Account</p>
+            <p id="sb3">My Mischief</p>
+            <p id="sb4">Joined Mischiefs</p>
+            <button id="logout">Logout</button>
+        </div>
+        <div class="feed">
+            <h2>Dashboard</h2>
+            <form class="squeak">
+                <input id="addimage" type="text" placeholder="Enter image url here...">
+                <textarea id="content" placeholder="Start Squeakin'..." maxlength="150"></textarea>
+                <button id="sendBtn">squeak</button>
+            </form>
+            <div id="posts"></div>
+        </div>
     </main>
-    <footer></footer>
+    <section class="blog">
+    </section>
+    <section class="account">
+    </section>
+    <section class="myMischief">
+    </section>
+    <section class="joinedMischiefs">
+    </section>
 </body>
 </html>
