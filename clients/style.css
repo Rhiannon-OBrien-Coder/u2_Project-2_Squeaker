@@ -1,19 +1,30 @@
 body {
     background-color: #e7c695;
-    display: grid;
-    grid-auto-rows: minmax(500px, auto);
 }
 
-header {
-    grid-column: 1 / 3;
-    grid-row: 1;
-    h1 {
-        font-family: "Playwrite FR Moderne", cursive;
-        color: #0c0407;
-    }
-    img {
-        max-width: 125px;
-    }
+#branding {
+    background-color: #dfa54f;
+}
+
+h1 {
+    font-family: "Playwrite FR Moderne", cursive;
+    color: #0c0407;
+}
+
+img {
+    max-width: 125px;
+}
+
+#FAQ {
+    background-color: #dfa54f;
+}
+
+#sidebar {
+    background-color: #dfa54f;
+}
+
+#feed {
+    background-color: #dfa54f;
 }
 
 /* colors
