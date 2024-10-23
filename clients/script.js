@@ -27,7 +27,7 @@
             const squeakBtn = document.querySelector('#sendBtn')
             const squeakContent = document.querySelector('#content')
 
-        const posts = document.querySelector('.posts')
+        const feed = document.querySelector('.feed')
 
     //account 
         const accountInfo = document.querySelector('.accountInfo')
@@ -51,3 +51,40 @@
     //joined mischief
         const joinedMischiefs = document.querySelector('.joinedMischiefs')
         const followingList = document.querySelector('#followingList')
+
+//functions
+
+async function squeaks() {
+    let response = await axios.get(`http://localhost:3001/squeaks`)
+    let squeakData = response.data
+    for (i=0; i<squeakData.length; i++) {
+        let image = squeakData[i].image
+        let content = squeakData[i].content
+        let userId = squeakData[i].user
+        console.log(userId)
+            let userResponse = await axios.get(`http://localhost:3001/users/${userId}`)
+            let userName = userResponse.data.username
+            let userIcon = userResponse.data.icon
+        const div = document.createElement('div')
+        div.innerHTML =
+        `<div>
+            <div id="squeakerInfo">
+                <img id="userIcon" src="${userIcon}">
+                <h3>@${userName} squeaked:</h3>
+                <p id="postContent">${content}</p>
+            </div>
+            <img src="${image}">
+            <form class="comment">
+                <img id="icon" src="https://cdn-icons-png.flaticon.com/512/4063/4063297.png">
+                <textarea id="commentContent" placeholder="Squeak back..." maxlength="150"></textarea>
+                <img id="icon" src="https://icons.veryicon.com/png/o/hardware/jackdizhu_pc/comment-25.png">
+                <img id="icon" src="https://static.wikia.nocookie.net/clubpenguin/images/e/e9/Stinky_Cheese_icon.png/revision/latest?cb=20170922015654">
+            </form>
+        </div>`
+        feed.appendChild(div)
+    }
+}
+
+squeaks()
+
+//event listeners
