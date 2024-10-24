@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 const db = require('./db');
 const bodyParser = require('body-parser');
 const logger = require('morgan')
@@ -12,6 +13,7 @@ const stinkycheeseController = require('./controllers/stinkycheeseController')
 const PORT = process.env.PORT || 3001
 
 const app = express();
+app.use(cors())
 app.use(logger('dev'))
 app.use(bodyParser.json())
 

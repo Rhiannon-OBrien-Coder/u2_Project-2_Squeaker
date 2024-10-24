@@ -14,7 +14,7 @@
             const usernameLOInput = document.querySelector('#usernameLO')
             const passwordLOInput = document.querySelector('#passwordLO')
             const loginBtn = document.querySelector('#login')
-            const newAccountBtn = document.querySelector('#createAccount')
+            const createAccount = document.querySelector('#createAccount')
 
         const newAccountPage = document.querySelector('.newAccount')
             const usernameCAInput = document.querySelector('#usernameCA')
@@ -26,8 +26,8 @@
 
         const newSqueak = document.querySelector('.squeak')
             const addImage = document.querySelector('#addimage')
-            const squeakBtn = document.querySelector('#sendBtn')
             const squeakContent = document.querySelector('#content')
+            const squeakBtn = document.querySelector('#sendBtn')
 
         const feed = document.querySelector('.feed')
 
@@ -53,6 +53,9 @@
     //joined mischief
         const joinedMischiefs = document.querySelector('.joinedMischiefs')
         const followingList = document.querySelector('#followingList')
+
+    //Between Functions
+        let loggedInUser = ""
 
 //functions
 
@@ -88,18 +91,6 @@ async function squeaks() {
 }
 squeaks()
 
-//Figure out how to log in the user, and pull that data before making new squeaks
-// async function newSqueak() {
-//     let response = await axios.get({
-//         method: 'post',
-//         url: `http://localhost:3001/squeaks`,
-//         data: {
-//             image: squeakContent.value,
-//             content: squeakContent.value,
-//             user: ``
-//         }})
-// }
-
 //event listeners
 
 loginBtn.addEventListener('click', async (event) => {
@@ -114,6 +105,7 @@ loginBtn.addEventListener('click', async (event) => {
             loggedoutPage.style.visibility = "hidden"
             welcomeUser.innerText = `Welcome ${data.username}!`
             userIcon.innerHTML = `<img class="userImage" src="${data.icon}" alt="${data.username}'s icon">`
+            loggedInUser = `${data._id}`
             loggedinPage.style.visibility = "visible"
         } else {
           alert('Please enter correct password.')
@@ -125,4 +117,49 @@ loginBtn.addEventListener('click', async (event) => {
       console.error('Error:', error)
       alert('An error occurred. Please try again.')
     }
+  })
+
+// sidebar switcher 
+  logoutBtn.addEventListener('click', async () => {
+    loggedoutPage.style.visibility = "visible"
+    loggedinPage.style.visibility = "hidden"
+  })
+
+  createAccount.addEventListener('click', async () => {
+    loggedoutPage.style.visibility = "hidden"
+    loggedinPage.style.visibility = "hidden"
+    newAccountPage.style.visibility = "visible"
+  })
+
+squeakBtn.addEventListener('click', async (event) => {
+    event.preventDefault()
+    try {
+        if (loggedInUser !== "") {
+            if (squeakContent.value !== "") {
+                if(addImage.value !== "") {
+                    await axios.post( 'http://localhost:3001/squeaks', {
+                        data: {
+                            image: `${addImage.value}`,
+                            content: `${squeakContent.value}`,
+                            user: `${loggedInUser}`
+                        }
+                    })
+                } else if (addImage.value === "") {
+                    await axios.post( 'http://localhost:3001/squeaks', {
+                        data: {
+                            content: `${squeakContent.value}`,
+                            user: `${loggedInUser}`
+                        }
+                    })
+                }
+            } else {
+                alert('Please enter content for your squeak.')
+            }
+        } else {
+            alert(`Please login to get Squeakin'`)
+        }
+    } catch (error) {
+        console.error('Error:', error)
+        alert("An error occurred. Please try again.")
+        }
   })
