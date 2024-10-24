@@ -14,11 +14,12 @@
             const usernameLOInput = document.querySelector('#usernameLO')
             const passwordLOInput = document.querySelector('#passwordLO')
             const loginBtn = document.querySelector('#login')
+            const newAccountBtn = document.querySelector('#createAccount')
 
         const newAccountPage = document.querySelector('.newAccount')
             const usernameCAInput = document.querySelector('#usernameCA')
             const passwordCAInput = document.querySelector('#passwordCA')
-            const createAccountBtn = document.querySelector('#createAccount')
+            const createAccountBtn = document.querySelector('#createAccountBtn')
 
     //feed
         const feedTitle = document.querySelector('#feedTitle')
@@ -110,7 +111,10 @@ loginBtn.addEventListener('click', async (event) => {
       const data = response.data[0]
       if (response.status === 200) {
         if (data.password === thisPassword) {
-  
+            loggedoutPage.style.visibility = "hidden"
+            welcomeUser.innerText = `Welcome ${data.username}!`
+            userIcon.innerHTML = `<img class="userImage" src="${data.icon}" alt="${data.username}'s icon">`
+            loggedinPage.style.visibility = "visible"
         } else {
           alert('Please enter correct password.')
         }
