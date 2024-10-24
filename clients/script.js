@@ -55,21 +55,42 @@
         const followingList = document.querySelector('#followingList')
 
     //Between Functions
-        let loggedInUser = ""
+        let loggedInUserId = ""
+        let loggedinUsername = ""
+        let loggedinIcon = ''
 
 //functions
 
 async function squeaks() {
-    let response = await axios.get(`http://localhost:3001/squeaks`)
-    let squeakData = response.data
+    let squeakResponse = await axios.get(`http://localhost:3001/squeaks`)
+    let squeakData = squeakResponse.data
     for (i=0; i<squeakData.length; i++) {
         let image = squeakData[i].image
-        console.log(image)
         let content = squeakData[i].content
         let userId = squeakData[i].user
+        let squeakId = squeakData[i]._id
+
         let userResponse = await axios.get(`http://localhost:3001/users/${userId}`)
         let userName = userResponse.data.username
         let userIcon = userResponse.data.icon
+
+            let commentResponse = await axios.get(`http://localhost:3001/comments/squeak/${squeakId}`)
+            let commentsArray = commentResponse.data
+            let allComments = ""
+            if (commentsArray.length > 0) {
+                for (a=0; a<commentsArray.length; a++) {
+                    let commentUserId = commentsArray[a].user
+                    let commentContent = commentsArray[a].content
+                    let userCommentResponse = await axios.get(`http://localhost:3001/users/${commentUserId}`)
+                    let commenterName = userCommentResponse.data.username
+                    let commenterIcon = userCommentResponse.data.icon
+                    let thisComment = `<img id="userIcon" src="${commenterIcon}">
+                        <h3>@${commenterName} squeaked back @${userName}:</h3>
+                        <p>${commentContent}</p>`
+                    allComments = allComments + thisComment
+                }
+            }
+
         if(image !== undefined){
             const div = document.createElement('div')
             div.innerHTML =
@@ -80,6 +101,7 @@ async function squeaks() {
                     <p id="postContent">${content}</p>
                 </div>
                 <img src="${image}">
+                ${allComments}
                 <form class="comment">
                     <img id="icon" src="https://cdn-icons-png.flaticon.com/512/4063/4063297.png">
                     <textarea id="commentContent" placeholder="Squeak back..." maxlength="150"></textarea>
@@ -97,6 +119,7 @@ async function squeaks() {
                     <h3>@${userName} squeaked:</h3>
                     <p id="postContent">${content}</p>
                 </div>
+                ${allComments}
                 <form class="comment">
                     <img id="icon" src="https://cdn-icons-png.flaticon.com/512/4063/4063297.png">
                     <textarea id="commentContent" placeholder="Squeak back..." maxlength="150"></textarea>
@@ -124,7 +147,9 @@ loginBtn.addEventListener('click', async (event) => {
             loggedoutPage.style.visibility = "hidden"
             welcomeUser.innerText = `Welcome ${data.username}!`
             userIcon.innerHTML = `<img class="userImage" src="${data.icon}" alt="${data.username}'s icon">`
-            loggedInUser = `${data._id}`
+            loggedInUserId = `${data._id}`
+            loggedinUsername= `${data.username}`
+            loggedinIcon = `${data.icon}`
             loggedinPage.style.visibility = "visible"
         } else {
           alert('Please enter correct password.')
@@ -139,36 +164,113 @@ loginBtn.addEventListener('click', async (event) => {
   })
 
 // sidebar switcher 
-  logoutBtn.addEventListener('click', async () => {
-    loggedoutPage.style.visibility = "visible"
-    loggedinPage.style.visibility = "hidden"
-  })
+logoutBtn.addEventListener('click', async () => {
+loggedoutPage.style.visibility = "visible"
+loggedinPage.style.visibility = "hidden"
+newAccountPage.style.visibility = "hidden"
+})
 
-  createAccount.addEventListener('click', async () => {
-    loggedoutPage.style.visibility = "hidden"
-    loggedinPage.style.visibility = "hidden"
-    newAccountPage.style.visibility = "visible"
-  })
+createAccount.addEventListener('click', async () => {
+loggedoutPage.style.visibility = "hidden"
+loggedinPage.style.visibility = "hidden"
+newAccountPage.style.visibility = "visible"
+})
+
+    sidebarBtn1.addEventListener('click', async () => {
+    })
+
+    sidebarBtn2.addEventListener('click', async () => {
+    })
+
+    sidebarBtn3.addEventListener('click', async () => {
+    })
+
+    sidebarBtn4.addEventListener('click', async () => {
+    })
+
+// Create new User
+//   squeakBtn.addEventListener('click', async (event) => {
+//     event.preventDefault()
+//     try {
+//         if (loggedInUser !== "") {
+//             if (squeakContent.value !== "") {
+//                 if(addImage.value !== "") {
+//                     await axios.post( 'http://localhost:3001/squeaks', 
+//                         {
+//                             image: `${addImage.value}`,
+//                             content: `${squeakContent.value}`,
+//                             user: `${loggedInUser}`
+//                         })
+//                         const div = document.createElement('div')
+//                         div.innerHTML =
+//                         `<div>
+//                             <div id="squeakerInfo">
+//                                 <img id="userIcon" src="${userIcon}">
+//                                 <h3>@${userName} squeaked:</h3>
+//                                 <p id="postContent">${content}</p>
+//                             </div>
+//                             <img src="${image}">
+//                             <form class="comment">
+//                                 <img id="icon" src="https://cdn-icons-png.flaticon.com/512/4063/4063297.png">
+//                                 <textarea id="commentContent" placeholder="Squeak back..." maxlength="150"></textarea>
+//                                 <img id="icon" src="https://icons.veryicon.com/png/o/hardware/jackdizhu_pc/comment-25.png">
+//                                 <img id="icon" src="https://static.wikia.nocookie.net/clubpenguin/images/e/e9/Stinky_Cheese_icon.png/revision/latest?cb=20170922015654">
+//                             </form>
+//                         </div>`
+//                         feed.appendChild(div)
+//                 } else if (addImage.value === "") {
+//                     await axios.post( 'http://localhost:3001/squeaks', {
+//                             content: `${squeakContent.value}`,
+//                             user: `${loggedInUser}`
+//                     })
+//                     const div = document.createElement('div')
+//                     div.innerHTML =
+//                     `<div>
+//                         <div id="squeakerInfo">
+//                             <img id="userIcon" src="${userIcon}">
+//                             <h3>@${userName} squeaked:</h3>
+//                             <p id="postContent">${content}</p>
+//                         </div>
+//                         <form class="comment">
+//                             <img id="icon" src="https://cdn-icons-png.flaticon.com/512/4063/4063297.png">
+//                             <textarea id="commentContent" placeholder="Squeak back..." maxlength="150"></textarea>
+//                             <img id="icon" src="https://icons.veryicon.com/png/o/hardware/jackdizhu_pc/comment-25.png">
+//                             <img id="icon" src="https://static.wikia.nocookie.net/clubpenguin/images/e/e9/Stinky_Cheese_icon.png/revision/latest?cb=20170922015654">
+//                         </form>
+//                     </div>`
+//                     feed.appendChild(div)
+//                 }
+//             } else {
+//                 alert('Please enter content for your squeak.')
+//             }
+//         } else {
+//             alert(`Please login to get Squeakin'`)
+//         }
+//     } catch (error) {
+//         console.error('Error:', error)
+//         alert("An error occurred. Please try again.")
+//         }
+//   })
 
 squeakBtn.addEventListener('click', async (event) => {
     event.preventDefault()
     try {
-        if (loggedInUser !== "") {
+        if (loggedInUserId !== "") {
             if (squeakContent.value !== "") {
                 if(addImage.value !== "") {
                     await axios.post( 'http://localhost:3001/squeaks', 
                         {
                             image: `${addImage.value}`,
                             content: `${squeakContent.value}`,
-                            user: `${loggedInUser}`
+                            user: `${loggedInUserId}`
                         })
                         const div = document.createElement('div')
                         div.innerHTML =
                         `<div>
                             <div id="squeakerInfo">
-                                <img id="userIcon" src="${userIcon}">
-                                <h3>@${userName} squeaked:</h3>
-                                <p id="postContent">${content}</p>
+                                <img id="userIcon" src="${loggedinIcon}">
+                                <h3>@${loggedinUsername} squeaked:</h3>
+                                <p id="postContent">${squeakContent.value}</p>
                             </div>
                             <img src="${image}">
                             <form class="comment">
@@ -178,19 +280,19 @@ squeakBtn.addEventListener('click', async (event) => {
                                 <img id="icon" src="https://static.wikia.nocookie.net/clubpenguin/images/e/e9/Stinky_Cheese_icon.png/revision/latest?cb=20170922015654">
                             </form>
                         </div>`
-                        feed.appendChild(div)
+                        feed.insertBefore(div, feed.childNodes[5])
                 } else if (addImage.value === "") {
                     await axios.post( 'http://localhost:3001/squeaks', {
                             content: `${squeakContent.value}`,
-                            user: `${loggedInUser}`
+                            user: `${loggedInUserId}`
                     })
                     const div = document.createElement('div')
                     div.innerHTML =
                     `<div>
                         <div id="squeakerInfo">
-                            <img id="userIcon" src="${userIcon}">
-                            <h3>@${userName} squeaked:</h3>
-                            <p id="postContent">${content}</p>
+                            <img id="userIcon" src="${loggedinIcon}">
+                            <h3>@${loggedinUsername} squeaked:</h3>
+                            <p id="postContent">${squeakContent.value}</p>
                         </div>
                         <form class="comment">
                             <img id="icon" src="https://cdn-icons-png.flaticon.com/512/4063/4063297.png">
@@ -199,7 +301,7 @@ squeakBtn.addEventListener('click', async (event) => {
                             <img id="icon" src="https://static.wikia.nocookie.net/clubpenguin/images/e/e9/Stinky_Cheese_icon.png/revision/latest?cb=20170922015654">
                         </form>
                     </div>`
-                    feed.appendChild(div)
+                    feed.insertBefore(div, feed.childNodes[5])
                 }
             } else {
                 alert('Please enter content for your squeak.')

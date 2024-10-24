@@ -2,7 +2,7 @@ const {Comment} = require('../models');
 
 const getComments = async (req, res) => {
     try {
-        const comment = await Comment.find({})
+        const comment = await Comment.find({}).sort({updatedAt: -1})
         res.json(comment)
     } catch (error) {
         return res.status(500).send(error.message);
@@ -11,7 +11,7 @@ const getComments = async (req, res) => {
 
 const getCommentBySqueak = async (req, res) => {
     try { 
-        const comment = await Comment.find( {'squeak': req.params.squeak})
+        const comment = await Comment.find( {'squeak': req.params.squeak}).sort({updatedAt: -1})
         console.log(comment)
         if (comment) {
             return res.json(comment);
