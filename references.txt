@@ -7,3 +7,4 @@ Nope! Went back to flex.
 
 https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea
 flexbox refresher: https://www.youtube.com/watch?v=fYq5PXgSsbE
+visibility info: https://developer.mozilla.org/en-US/docs/Web/CSS/visibility

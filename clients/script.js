@@ -1,4 +1,5 @@
 //Global variables
+
     //sidebar
         const loggedinPage = document.querySelector('.loggedin')
             const welcomeUser = document.querySelector('#welcomeUser')
@@ -84,7 +85,40 @@ async function squeaks() {
         feed.appendChild(div)
     }
 }
-
 squeaks()
 
+//Figure out how to log in the user, and pull that data before making new squeaks
+// async function newSqueak() {
+//     let response = await axios.get({
+//         method: 'post',
+//         url: `http://localhost:3001/squeaks`,
+//         data: {
+//             image: squeakContent.value,
+//             content: squeakContent.value,
+//             user: ``
+//         }})
+// }
+
 //event listeners
+
+loginBtn.addEventListener('click', async (event) => {
+    event.preventDefault()
+    const thisUsername = usernameLOInput.value
+    const thisPassword = passwordLOInput.value
+    try {
+      const response = await axios.get(`http://localhost:3001/users/usernames/${thisUsername}`)
+      const data = response.data[0]
+      if (response.status === 200) {
+        if (data.password === thisPassword) {
+  
+        } else {
+          alert('Please enter correct password.')
+        }
+      } else {
+        alert('Please enter valid username and password.')
+      }
+    } catch (error) {
+      console.error('Error:', error)
+      alert('An error occurred. Please try again.')
+    }
+  })
