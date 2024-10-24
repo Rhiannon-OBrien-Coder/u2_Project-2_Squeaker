@@ -64,29 +64,48 @@ async function squeaks() {
     let squeakData = response.data
     for (i=0; i<squeakData.length; i++) {
         let image = squeakData[i].image
+        console.log(image)
         let content = squeakData[i].content
         let userId = squeakData[i].user
-        console.log(userId)
-            let userResponse = await axios.get(`http://localhost:3001/users/${userId}`)
-            let userName = userResponse.data.username
-            let userIcon = userResponse.data.icon
-        const div = document.createElement('div')
-        div.innerHTML =
-        `<div>
-            <div id="squeakerInfo">
-                <img id="userIcon" src="${userIcon}">
-                <h3>@${userName} squeaked:</h3>
-                <p id="postContent">${content}</p>
-            </div>
-            <img src="${image}">
-            <form class="comment">
-                <img id="icon" src="https://cdn-icons-png.flaticon.com/512/4063/4063297.png">
-                <textarea id="commentContent" placeholder="Squeak back..." maxlength="150"></textarea>
-                <img id="icon" src="https://icons.veryicon.com/png/o/hardware/jackdizhu_pc/comment-25.png">
-                <img id="icon" src="https://static.wikia.nocookie.net/clubpenguin/images/e/e9/Stinky_Cheese_icon.png/revision/latest?cb=20170922015654">
-            </form>
-        </div>`
-        feed.appendChild(div)
+        let userResponse = await axios.get(`http://localhost:3001/users/${userId}`)
+        let userName = userResponse.data.username
+        let userIcon = userResponse.data.icon
+        if(image !== undefined){
+            const div = document.createElement('div')
+            div.innerHTML =
+            `<div>
+                <div id="squeakerInfo">
+                    <img id="userIcon" src="${userIcon}">
+                    <h3>@${userName} squeaked:</h3>
+                    <p id="postContent">${content}</p>
+                </div>
+                <img src="${image}">
+                <form class="comment">
+                    <img id="icon" src="https://cdn-icons-png.flaticon.com/512/4063/4063297.png">
+                    <textarea id="commentContent" placeholder="Squeak back..." maxlength="150"></textarea>
+                    <img id="icon" src="https://icons.veryicon.com/png/o/hardware/jackdizhu_pc/comment-25.png">
+                    <img id="icon" src="https://static.wikia.nocookie.net/clubpenguin/images/e/e9/Stinky_Cheese_icon.png/revision/latest?cb=20170922015654">
+                </form>
+            </div>`
+            feed.appendChild(div)
+        }  else {
+            const div = document.createElement('div')
+            div.innerHTML =
+            `<div>
+                <div id="squeakerInfo">
+                    <img id="userIcon" src="${userIcon}">
+                    <h3>@${userName} squeaked:</h3>
+                    <p id="postContent">${content}</p>
+                </div>
+                <form class="comment">
+                    <img id="icon" src="https://cdn-icons-png.flaticon.com/512/4063/4063297.png">
+                    <textarea id="commentContent" placeholder="Squeak back..." maxlength="150"></textarea>
+                    <img id="icon" src="https://icons.veryicon.com/png/o/hardware/jackdizhu_pc/comment-25.png">
+                    <img id="icon" src="https://static.wikia.nocookie.net/clubpenguin/images/e/e9/Stinky_Cheese_icon.png/revision/latest?cb=20170922015654">
+                </form>
+            </div>`
+            feed.appendChild(div)
+        }
     }
 }
 squeaks()
@@ -137,20 +156,50 @@ squeakBtn.addEventListener('click', async (event) => {
         if (loggedInUser !== "") {
             if (squeakContent.value !== "") {
                 if(addImage.value !== "") {
-                    await axios.post( 'http://localhost:3001/squeaks', {
-                        data: {
+                    await axios.post( 'http://localhost:3001/squeaks', 
+                        {
                             image: `${addImage.value}`,
                             content: `${squeakContent.value}`,
                             user: `${loggedInUser}`
-                        }
-                    })
+                        })
+                        const div = document.createElement('div')
+                        div.innerHTML =
+                        `<div>
+                            <div id="squeakerInfo">
+                                <img id="userIcon" src="${userIcon}">
+                                <h3>@${userName} squeaked:</h3>
+                                <p id="postContent">${content}</p>
+                            </div>
+                            <img src="${image}">
+                            <form class="comment">
+                                <img id="icon" src="https://cdn-icons-png.flaticon.com/512/4063/4063297.png">
+                                <textarea id="commentContent" placeholder="Squeak back..." maxlength="150"></textarea>
+                                <img id="icon" src="https://icons.veryicon.com/png/o/hardware/jackdizhu_pc/comment-25.png">
+                                <img id="icon" src="https://static.wikia.nocookie.net/clubpenguin/images/e/e9/Stinky_Cheese_icon.png/revision/latest?cb=20170922015654">
+                            </form>
+                        </div>`
+                        feed.appendChild(div)
                 } else if (addImage.value === "") {
                     await axios.post( 'http://localhost:3001/squeaks', {
-                        data: {
                             content: `${squeakContent.value}`,
                             user: `${loggedInUser}`
-                        }
                     })
+                    const div = document.createElement('div')
+                    div.innerHTML =
+                    `<div>
+                        <div id="squeakerInfo">
+                            <img id="userIcon" src="${userIcon}">
+                            <h3>@${userName} squeaked:</h3>
+                            <p id="postContent">${content}</p>
+                        </div>
+                        <form class="comment">
+                            <img id="icon" src="https://cdn-icons-png.flaticon.com/512/4063/4063297.png">
+                            <textarea id="commentContent" placeholder="Squeak back..." maxlength="150"></textarea>
+                            <img id="icon" src="https://icons.veryicon.com/png/o/hardware/jackdizhu_pc/comment-25.png">
+                            <img id="icon" src="https://static.wikia.nocookie.net/clubpenguin/images/e/e9/Stinky_Cheese_icon.png/revision/latest?cb=20170922015654">
+                        </form>
+                    </div>`
+                    feed.appendChild(div)
                 }
             } else {
                 alert('Please enter content for your squeak.')

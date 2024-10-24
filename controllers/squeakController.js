@@ -2,7 +2,7 @@ const {Squeak} = require('../models');
 
 const getUsers = async (req, res) => {
     try {
-        const squeak = await Squeak.find({})
+        const squeak = await Squeak.find({}).sort({updatedAt: -1})
         res.json(squeak)
     } catch (error) {
         return res.status(500).send(error.message);
@@ -38,6 +38,7 @@ const getSqueaksById = async (req, res) => {
 //create a new plant -> POST
 const createSqueak = async (req, res) => {
     try {
+        console.log(req.body)
         const squeak = await new Squeak(req.body)
         await squeak.save()
         return res.status(201).json({

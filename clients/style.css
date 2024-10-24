@@ -49,14 +49,17 @@ main {
     font-family: "Comfortaa", sans-serif;
     color: #0c0407;
 }
-
-    .sidebar {
+    .sidebar{
         width: 250px;
-        height: 500px;
+        height: 100px;
         background-color: #dfa54f;
         margin-right: 20px;
     }
         .loggedin {
+            width: 250px;
+            height: 650px;
+            background-color: #dfa54f;
+            margin-right: 20px;
             visibility: hidden;
             display: flex;
             flex-direction: column;
@@ -70,15 +73,16 @@ main {
             }
         }
         .loggedout {
+            width: 250px;
+            height: 400px;
+            background-color: #dfa54f;
+            margin-right: 20px;
             visibility: visible;
             display: flex;
             flex-direction: column;
             align-items: center;
             text-align: center;
-            margin-top: -450px;
-            p {
-                margin: auto;
-            }
+            margin-top: -650px;
             h2 {
                 font-size: 15pt;
                 font-weight: 400;
@@ -89,6 +93,10 @@ main {
             }
         }
         .newAccount {
+            width: 250px;
+            height: 350px;
+            background-color: #dfa54f;
+            margin-right: 20px;
             visibility: hidden;
             display: flex;
             flex-direction: column;
@@ -107,6 +115,17 @@ main {
                 margin-bottom: 30px;
             }
         }
+            .switcher {
+                font-family: "Comfortaa", sans-serif;
+                font-size: 12pt;
+                font-weight: 400;
+                color: #0c0407;
+                height: 50px;
+                width: 100px;
+                border-radius: 5pt;
+                background-color: #e7c695;
+                margin: 20px;
+            }
             .userImage {
                 max-width: 80px;
                 border-radius: 100%;
@@ -114,6 +133,7 @@ main {
             }
             p {
                 color: #0c0407;
+                margin: 5px;
             }
             #logout {
                 font-family: "Comfortaa", sans-serif;
@@ -273,11 +293,11 @@ main {
                 font-family: "Comfortaa", sans-serif;
                 font-size: 11pt;
                 font-weight: 400;
-                color: #e7c695;
+                color: #662929;
                 height: 30px;
                 width: 75px;
                 border-radius: 5pt;
-                background-color: #662929;
+                background-color: #e7c695;
                 margin-top: 15px;
             }
     .account {
