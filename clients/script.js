@@ -8,6 +8,7 @@
             const sidebarBtn2 = document.querySelector('#sb2')
             const sidebarBtn3 = document.querySelector('#sb3')
             const sidebarBtn4 = document.querySelector('#sb4')
+            const sidebarBtn5 = document.querySelector('#sb5')
             const logoutBtn = document.querySelector('#logout')
 
         const loggedoutPage = document.querySelector('.loggedout')
@@ -32,17 +33,18 @@
         const feed = document.querySelector('.feed')
 
     //account 
-        const accountInfo = document.querySelector('.accountInfo')
-            const inputIconUrl = document.querySelector('#iconUrl')
-            const inputUsernameText = document.querySelector('#accountUsername')
-            const inputPasswordText = document.querySelector('#accountPassword')
+        const account = document.querySelector('.account')
+            const accountInfo = document.querySelector('.accountInfo')
+                const accountIconUrl = document.querySelector('#iconUrlImg')
+                const accountUsername = document.querySelector('#usernameText')
+                const accountPassword = document.querySelector('#passwordText')
 
         const accountEditBtn = document.querySelector('#accountEdit')
 
         const accountForm = document.querySelector('#accountInput')
-            const accountIconUrl = document.querySelector('#iconUrlImg')
-            const accountUsername = document.querySelector('#usernameText')
-            const accountPassword = document.querySelector('#passwordText')
+            const inputIconUrl = document.querySelector('#iconUrl')
+            const inputUsernameText = document.querySelector('#accountUsername')
+            const inputPasswordText = document.querySelector('#accountPassword')
 
         const accountSaveBtn = document.querySelector('#accountSave')
 
@@ -57,7 +59,8 @@
     //Between Functions
         let loggedInUserId = ""
         let loggedinUsername = ""
-        let loggedinIcon = ''
+        let loggedinIcon = ""
+        let loggedinPassword = ""
 
 //functions
 
@@ -150,6 +153,7 @@ loginBtn.addEventListener('click', async (event) => {
             loggedInUserId = `${data._id}`
             loggedinUsername= `${data.username}`
             loggedinIcon = `${data.icon}`
+            loggedinPassword = `${data.password}`
             loggedinPage.style.visibility = "visible"
         } else {
           alert('Please enter correct password.')
@@ -176,81 +180,94 @@ loggedinPage.style.visibility = "hidden"
 newAccountPage.style.visibility = "visible"
 })
 
-    sidebarBtn1.addEventListener('click', async () => {
+// accountInfo
+// myMischief
+// joinedMischiefs
+
+    // sidebarBtn1.addEventListener('click', async () => {
+    //     if (feed.style.visibility === "visible") {
+    //         sidebarBtn1.innerText = "Dashboard"
+    //     } else {
+    //         feed.style.visibility = "visible"
+    //         sidebarBtn1.innerText = "Blog"
+    //     }
+    // })
+
+    sidebarBtn5.addEventListener('click', async () => {
+        if (myMischief.style.visibility !== "visible") {
+            account.style.visibility = "hidden"
+            feed.style.visibility = "visible"
+            joinedMischiefs.style.visibility = "hidden"
+            myMischief.style.visibility = "hidden"
+        } else {
+            alert(`You're already here!`)
+        }
     })
 
     sidebarBtn2.addEventListener('click', async () => {
+        if (account.style.visibility !== "visible") {
+            account.style.visibility = "visible"
+            feed.style.visibility = "hidden"
+            joinedMischiefs.style.visibility = "hidden"
+            myMischief.style.visibility = "hidden"
+            accountIconUrl.innerHTML = `<img id="userIcon" src="${loggedinIcon}" alt="${loggedinUsername}'s icon">`
+            accountUsername.innerText = loggedinUsername
+            accountPassword.innerText = loggedinPassword
+        } else {
+            alert(`You're already here!`)
+        }
     })
 
     sidebarBtn3.addEventListener('click', async () => {
+        if (myMischief.style.visibility !== "visible") {
+            account.style.visibility = "hidden"
+            feed.style.visibility = "hidden"
+            joinedMischiefs.style.visibility = "hidden"
+            myMischief.style.visibility = "visible"
+        } else {
+            alert(`You're already here!`)
+        }
     })
 
     sidebarBtn4.addEventListener('click', async () => {
+        if (joinedMischiefs.style.visibility !== "visible") {
+            account.style.visibility = "hidden"
+            feed.style.visibility = "hidden"
+            joinedMischiefs.style.visibility = "visible"
+            myMischief.style.visibility = "hidden"
+        } else {
+            alert(`You're already here!`)
+        }
     })
 
-// Create new User
-//   squeakBtn.addEventListener('click', async (event) => {
-//     event.preventDefault()
-//     try {
-//         if (loggedInUser !== "") {
-//             if (squeakContent.value !== "") {
-//                 if(addImage.value !== "") {
-//                     await axios.post( 'http://localhost:3001/squeaks', 
-//                         {
-//                             image: `${addImage.value}`,
-//                             content: `${squeakContent.value}`,
-//                             user: `${loggedInUser}`
-//                         })
-//                         const div = document.createElement('div')
-//                         div.innerHTML =
-//                         `<div>
-//                             <div id="squeakerInfo">
-//                                 <img id="userIcon" src="${userIcon}">
-//                                 <h3>@${userName} squeaked:</h3>
-//                                 <p id="postContent">${content}</p>
-//                             </div>
-//                             <img src="${image}">
-//                             <form class="comment">
-//                                 <img id="icon" src="https://cdn-icons-png.flaticon.com/512/4063/4063297.png">
-//                                 <textarea id="commentContent" placeholder="Squeak back..." maxlength="150"></textarea>
-//                                 <img id="icon" src="https://icons.veryicon.com/png/o/hardware/jackdizhu_pc/comment-25.png">
-//                                 <img id="icon" src="https://static.wikia.nocookie.net/clubpenguin/images/e/e9/Stinky_Cheese_icon.png/revision/latest?cb=20170922015654">
-//                             </form>
-//                         </div>`
-//                         feed.appendChild(div)
-//                 } else if (addImage.value === "") {
-//                     await axios.post( 'http://localhost:3001/squeaks', {
-//                             content: `${squeakContent.value}`,
-//                             user: `${loggedInUser}`
-//                     })
-//                     const div = document.createElement('div')
-//                     div.innerHTML =
-//                     `<div>
-//                         <div id="squeakerInfo">
-//                             <img id="userIcon" src="${userIcon}">
-//                             <h3>@${userName} squeaked:</h3>
-//                             <p id="postContent">${content}</p>
-//                         </div>
-//                         <form class="comment">
-//                             <img id="icon" src="https://cdn-icons-png.flaticon.com/512/4063/4063297.png">
-//                             <textarea id="commentContent" placeholder="Squeak back..." maxlength="150"></textarea>
-//                             <img id="icon" src="https://icons.veryicon.com/png/o/hardware/jackdizhu_pc/comment-25.png">
-//                             <img id="icon" src="https://static.wikia.nocookie.net/clubpenguin/images/e/e9/Stinky_Cheese_icon.png/revision/latest?cb=20170922015654">
-//                         </form>
-//                     </div>`
-//                     feed.appendChild(div)
-//                 }
-//             } else {
-//                 alert('Please enter content for your squeak.')
-//             }
-//         } else {
-//             alert(`Please login to get Squeakin'`)
-//         }
-//     } catch (error) {
-//         console.error('Error:', error)
-//         alert("An error occurred. Please try again.")
-//         }
-//   })
+  createAccountBtn.addEventListener('click', async (event) => {
+    event.preventDefault()
+    let newUsername = usernameCAInput.value
+    let newPassword = passwordCAInput.value
+    let newIcon = "https://images.vexels.com/media/users/3/207694/isolated/lists/30e4907748338c1f72833c0d2acac19c-crouching-mouse-silhouette.png"
+    try {
+        if (usernameCAInput.value !== "") {
+            if (passwordCAInput.value !== "") {
+                await axios.post( 'http://localhost:3001/users', 
+                    {
+                        icon: `${newIcon}`,
+                        username: `${newUsername}`,
+                        password: `${newPassword}`,
+                    })
+                loggedoutPage.style.visibility = "visible"
+                loggedinPage.style.visibility = "hidden"
+                newAccountPage.style.visibility = "hidden"
+                alert(`Account created! Please login.`)
+            } else {
+                alert('Please enter a password.')} 
+        } else {
+            alert(`Please enter a username and password.'`)
+        }
+    } catch (error) {
+        console.error('Error:', error)
+        alert("An error occurred. Please try again.")
+        }
+  })
 
 squeakBtn.addEventListener('click', async (event) => {
     event.preventDefault()

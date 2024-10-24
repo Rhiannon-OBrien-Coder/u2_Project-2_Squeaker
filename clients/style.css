@@ -118,11 +118,10 @@ main {
                 font-size: 12pt;
                 font-weight: 400;
                 color: #0c0407;
-                height: 50px;
-                width: 100px;
                 border-radius: 5pt;
                 background-color: #e7c695;
                 margin: 20px;
+                padding: 10px;
             }
             .userImage {
                 max-width: 80px;
@@ -228,12 +227,6 @@ main {
         #icon{
             max-width: 40px;
         }
-        #userIcon {
-            max-width: 60px;
-            border-radius: 100%;
-            margin-right: 400px;
-            margin-top: 25px;
-        }
         #squeakerInfo {
             align-items: flex-start;
             padding: 0;
@@ -260,6 +253,12 @@ main {
             }
         }
     }
+        #userIcon {
+            max-width: 60px;
+            border-radius: 100%;
+            margin-right: 400px;
+            margin-top: 25px;
+        }
         .squeak {
             display: flex;
             flex-direction: column;
