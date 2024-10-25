@@ -180,10 +180,6 @@ loggedinPage.style.visibility = "hidden"
 newAccountPage.style.visibility = "visible"
 })
 
-// accountInfo
-// myMischief
-// joinedMischiefs
-
     // sidebarBtn1.addEventListener('click', async () => {
     //     if (feed.style.visibility === "visible") {
     //         sidebarBtn1.innerText = "Dashboard"
